@@ -1,0 +1,102 @@
+{
+  "name": "FreeD",
+  "type": "UDP",
+  "path": "Protocol",
+  "version": "1.0.0",
+  "description": "FreeD protocol implmeentation.",
+  "url": "https://github.com/nicolaserard/FreeD-Chataigne-Module",
+  "downloadURL": "https://github.com/nicolaserard/FreeD-Chataigne-Chataigne-Module/archive/master.zip",
+  "hasInput": true,
+  "hasOutput": false,
+  "hideDefaultCommands": false,
+  "hideDefaultParameters": [
+    "autoAdd",
+    "Message Structure",
+    "Output",
+    "First value is the name"
+  ],
+  "defaults":
+  {
+    "autoAdd": false,
+    "Protocol": "Raw"
+  },
+  "parameters": {
+    "Setup":
+    {
+    }
+  },
+  	"scripts": [
+		"FreeD.js"
+	],
+
+ "values": {
+   "Camera id":
+   {
+      "type": "Integer",
+     "description": "Camera id",
+      "min": 0,
+     "max": 255
+   },
+   "Pan":
+   {
+      "type": "Float",
+     "description": "Pan",
+      "min": -180.0,
+     "max": 180.0
+   },
+   "Tilt":
+   {
+      "type": "Float",
+     "description": "Tilt",
+      "min": -180.0,
+     "max": 180.0
+   },
+   "Roll":
+   {
+      "type": "Float",
+     "description": "Roll",
+      "min": -180.0,
+     "max": 180.0
+   },
+   "X position":
+   {
+      "type": "Float",
+     "description": "X position",
+      "min": -131.07,
+     "max": 131.07
+   },
+   "Y position":
+   {
+      "type": "Float",
+     "description": "Y position",
+     "min": -131.07,
+     "max": 131.07
+   },
+   "Z position":
+   {
+      "type": "Float",
+     "description": "Z position",
+     "min": -131.07,
+     "max": 131.07
+   },
+   "Zoom":
+   {
+      "type": "Integer",
+     "description": "Zoom",
+      "min": 0,
+     "max": 16777215
+   },
+   "Camera Focus":
+   {
+      "type": "Integer",
+     "description": "Camera Focus",
+     "min": 0,
+     "max": 16777215
+   }
+  },
+
+  "commands": {
+  }
+}
+
+
