@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "description": "FreeD protocol implmeentation.",
   "url": "https://github.com/nicolaserard/FreeD-Chataigne-Module",
-  "downloadURL": "https://github.com/nicolaserard/FreeD-Chataigne-Chataigne-Module/archive/master.zip",
+  "downloadURL": "https://github.com/nicolaserard/FreeD-Chataigne-Module/archive/refs/heads/main.zip",
   "hasInput": true,
   "hasOutput": false,
   "hideDefaultCommands": false,

@@ -3,7 +3,7 @@
 
   Chataigne Module for FreeD protocol
 
-  Copyright: Nicolas Erard, February 2024
+  Copyright: Nicolas Erard, March 2024
 
   ==============================================================================
 ===============================================================================
@@ -92,8 +92,6 @@ function dataReceived(data)
     // Fractional part with the last 15 bits
     var fractional15bits = (((camera_pan_angle_2 >> 1 ) << 8) | camera_pan_angle_3) / 32768;
 
-    // var fractional15bits = (camera_pan_angle_3) / 256;
-
     var angle = firstBit ? -1  * (((integer8Bits ^ 0xFF) + 1) + fractional15bits) : integer8Bits + fractional15bits;
     pan.set(angle);
 
@@ -107,8 +105,6 @@ function dataReceived(data)
 
     // Fractional part with the last 15 bits
     var fractional15bits = (((camera_tilt_angle_2 >> 1 ) << 8) | camera_tilt_angle_3) / 32768;
-
-    // var fractional15bits = (camera_tilt_angle_3) / 256;
 
     var angle = firstBit ? -1  * (((integer8Bits ^ 0xFF) + 1) + fractional15bits) : integer8Bits + fractional15bits;
     tilt.set(angle);
@@ -124,59 +120,58 @@ function dataReceived(data)
     // Fractional part with the last 15 bits
     var fractional15bits = (((camera_roll_angle_2 >> 1 ) << 8) | camera_roll_angle_3) / 32768;
 
-    // var fractional15bits = (camera_roll_angle_3) / 256;
-
     var angle = firstBit ? -1  * (((integer8Bits ^ 0xFF) + 1) + fractional15bits) : integer8Bits + fractional15bits;
     roll.set(angle);
 
-    // pour X
+    // for X
 
-// Extraire le premier bit de la représentation
+    // extract the first bit as the sign
     var firstBit = camera_position_x_1 >> 7;
 
-// Faire un entier avec les 17 prochains bits
+    // make an integer with the 17 following bits.
     var entier17Bits = ((camera_position_x_1 & 0x7F) << 10) | (camera_position_x_2 << 2) | (camera_position_x_3 & 0x3F);
     // var entier17Bits = ((camera_position_x_1 & 0x7F) << 10) | (camera_position_x_2 << 2) | (camera_position_x_3 >> 2);
 
-// Un deuxième entier des 6 derniers bits
+    // the fractional part with the 6 last bits.
     var fractional6bits = (camera_position_x_3 & 0x3F) / 64;
     // var fractional6bits = (camera_position_x_3 >> 2) / 64;
 
     var millimeters = (firstBit ? -1  * (((entier17Bits ^ 0x1FFFF) + 1) + fractional6bits) : entier17Bits + fractional6bits) / 1000;
     xPosition.set(millimeters);
 
-    // pour Y
+    // for Y
 
-// Extraire le premier bit de la représentation
+    // extract the first bit as the sign
     var firstBit = camera_position_y_1 >> 7;
 
-// Faire un entier avec les 17 prochains bits
+    // make an integer with the 17 following bits.
     var entier17Bits = ((camera_position_y_1 & 0x7F) << 10) | (camera_position_y_2 << 2) | (camera_position_y_3 >> 6);
 
-// Un deuxième entier des 6 derniers bits
+    // the fractional part with the 6 last bits.
     var fractional6bits = (camera_position_y_3 >> 2) / 64;
 
     var millimeters = (firstBit ? -1  * (((entier17Bits ^ 0x1FFFF) + 1) + fractional6bits) : entier17Bits + fractional6bits) / 1000;
 
     yPosition.set(millimeters);
 
-    // pour Z
 
-// Extraire le premier bit de la représentation
+    // for Z
+
+    // extract the first bit as the sign
     var firstBit = camera_position_z_1 >> 7;
 
-// Faire un entier avec les 17 prochains bits
+    // make an integer with the 17 following bits.
     var entier17Bits = ((camera_position_z_1 & 0x7F) << 10) | (camera_position_z_2 << 2) | (camera_position_z_3 >> 6);
 
-// Un deuxième entier des 6 derniers bits
+    // the fractional part with the 6 last bits.
     var fractional6bits = (camera_position_z_3 >> 2) / 64;
-
 
     var millimeters = (firstBit ? -1  * (((entier17Bits ^ 0x1FFFF) + 1) + fractional6bits) : entier17Bits + fractional6bits) / 1000;
     zPosition.set(millimeters);
 
 
     // camera zoom
+
     var zoom_value = camera_zoom_1 << 16 | camera_zoom_2 << 8 | camera_zoom_3;
     zoom.set(zoom_value);
 
